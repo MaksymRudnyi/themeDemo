@@ -1,28 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 
 import {ThemeProvider} from 'styled-components';
+import {getTheme} from "./getTheme";
+import THEMES from './constants/themes'
+import { Header, AppLink } from './styles';
 
 function App() {
+  const [themeName, setThemeName] = useState(THEMES.BASIC);
+
   return (
-    <ThemeProvider theme={getTheme(state.themeName)}>
+    <ThemeProvider theme={getTheme(themeName)}>
       <div className="App">
-        <header className="App-header">
+        <Header>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
+          <AppLink
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
-        </header>
+          </AppLink>
+
+          <button onClick={() => setThemeName(THEMES.APPLE)}>Apple</button>
+          <button onClick={() => setThemeName(THEMES.DARCULA)}>Darcula</button>
+        </Header>
       </div>
     </ThemeProvider>
   );
